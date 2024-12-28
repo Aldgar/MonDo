@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import ThreadCard from "@/components/cards/ThreadCard"
 import { fetchThreadById } from "@/lib/actions/thread.action";
