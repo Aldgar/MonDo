@@ -5,7 +5,8 @@ import Thread from "../models/thread.model";
 import { connectToDB } from "../mongoose";
 import User from "../models/user.model";
 import path from "path";
-import { model } from "mongoose";
+import mongoose, { model } from "mongoose";
+import { auth } from "@clerk/nextjs/server";
 //import path from "path";
 
 interface Params {
@@ -99,4 +100,36 @@ export async function fetchThreadById(id: string) {
     } catch (error : any) {
         throw new Error(`Error fetching thread by id: ${error.message}`);
     }
+}
+
+export async function addCommentToThread(
+threadId: string, commentText: string, userId: string, pathname: string,
+) { 
+    connectToDB();
+
+    try {
+        const originalThread = await Thread.findById(threadId);
+
+        if (!originalThread) {
+            throw new Error("Thread not found");
+        }
+            
+        const commentThread = new Thread({
+            text: commentText,
+            author: userId,
+            parentId: threadId,
+        });
+
+        const savedComment = await commentThread.save();
+
+        originalThread.children.push(savedComment._id);
+        
+        await originalThread.save();
+        
+        revalidatePath(path.join('/thread', threadId));
+
+    } catch (error : any) {
+        throw new Error(`Error adding comment to thread: ${error.message}`);
+    }
+
 }
