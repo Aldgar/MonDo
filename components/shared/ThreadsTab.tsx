@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetchUserPost } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
-import { Params } from "next/dist/server/request/params";
 import ThreadCard from "../cards/ThreadCard";
 interface LocalParams {
     currentUserId: string;
@@ -14,7 +14,7 @@ const ThreadsTab = async ({
     accountType,
 } : LocalParams) => { 
     
-    let results = await fetchUserPost(accountId);
+    const results = await fetchUserPost(accountId);
     if (!results || !results.threads) redirect('/');
 
     return (

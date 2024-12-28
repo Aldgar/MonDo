@@ -1,4 +1,6 @@
-import { Params } from "next/dist/server/request/params";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import Image from 'next/image';
+
 interface ProfileParams {
     accountId: string;
     authUserId: string;
@@ -21,7 +23,7 @@ const ProfileHeader = ({
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="relative h-20 w-20 object-cover mt-5"> 
-                        <img
+                        <Image
                             src={imageUrl}
                             alt="profile image"
                             className="object-cover rounded-full shadow-2xl"

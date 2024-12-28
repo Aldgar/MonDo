@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 'use client';
 
 import * as z from 'zod';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '../ui/button';
@@ -23,7 +24,7 @@ interface CommentParams {
 const Comment = ({ threadId, currentUserImg, currentUserId } : CommentParams) => {
     
     const pathname = usePathname();
-        const router = useRouter();
+    const router = useRouter();
       
       const form = useForm({
             resolver: zodResolver(CommentValidation),

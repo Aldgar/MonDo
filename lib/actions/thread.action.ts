@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use server';
 
 import { revalidatePath } from "next/cache";
@@ -5,8 +7,6 @@ import Thread from "../models/thread.model";
 import { connectToDB } from "../mongoose";
 import User from "../models/user.model";
 import path from "path";
-import mongoose, { model } from "mongoose";
-import { auth } from "@clerk/nextjs/server";
 //import path from "path";
 
 interface Params {

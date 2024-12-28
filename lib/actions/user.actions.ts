@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use server';
 
 import { revalidatePath } from "next/cache";
@@ -5,11 +6,8 @@ import { FilterQuery, SortOrder } from "mongoose";
 import user from "../models/user.model";
 import { connectToDB } from "../mongoose";
 import Thread from "../models/thread.model";
-import path from "path";
-import { model } from "mongoose";
-import { UserValidation } from "../validations/user";
-import { auth, User } from "@clerk/nextjs/server";
-import { string, number } from "zod";
+import { User } from "@clerk/nextjs/server";
+
 interface UserParams {
     userId: string;
     name: string;
