@@ -6,6 +6,8 @@ import Topbar from '@/components/shared/Topbar';
 import LeftSidebar from '@/components/shared/LeftSidebar';
 import Bottumbar from '@/components/shared/Bottumbar';
 import RightSidebar from '@/components/shared/RighSidebar';
+import { ThemeProvider } from 'next-themes';
+
 
 export const metadata = {
   title: 'MonDo',
@@ -20,8 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body className={inter.className}>
+
+ <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+
           <Topbar />
           <main className='flex flex-row'>
             <LeftSidebar />
@@ -35,6 +45,7 @@ export default function RootLayout({
             </div>
           </main>
           <Bottumbar/>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
